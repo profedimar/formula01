@@ -37,6 +37,8 @@ public class PanelCorridaPiloto extends javax.swing.JPanel {
         btnAlterar = new javax.swing.JButton();
         btnExcluir = new javax.swing.JButton();
         bntCancelar = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
 
         jLabel4.setText("Piloto:");
 
@@ -59,6 +61,19 @@ public class PanelCorridaPiloto extends javax.swing.JPanel {
 
         bntCancelar.setText("Cancelar");
 
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
+            },
+            new String [] {
+                "Piloto", "Posição", "Duração"
+            }
+        ));
+        jScrollPane1.setViewportView(jTable1);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -74,7 +89,7 @@ public class PanelCorridaPiloto extends javax.swing.JPanel {
                         .addComponent(btnExcluir)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(bntCancelar)
-                        .addContainerGap(73, Short.MAX_VALUE))
+                        .addContainerGap(164, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
@@ -86,6 +101,10 @@ public class PanelCorridaPiloto extends javax.swing.JPanel {
                             .addComponent(jTextField1)
                             .addComponent(jTextField2))
                         .addGap(73, 73, 73))))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -108,7 +127,9 @@ public class PanelCorridaPiloto extends javax.swing.JPanel {
                     .addComponent(btnAlterar)
                     .addComponent(btnExcluir)
                     .addComponent(bntCancelar))
-                .addContainerGap(113, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -125,6 +146,8 @@ public class PanelCorridaPiloto extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JComboBox<String> jcbPiloto;

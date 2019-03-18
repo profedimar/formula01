@@ -17,6 +17,9 @@ public class ManutencaoCorrida extends javax.swing.JDialog {
     public ManutencaoCorrida(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        
+        jTabbedPane1.add("Corrida", new PanelCorrida());
+        jTabbedPane1.add("Pilotos da Corrida", new PanelCorridaPiloto());
     }
 
     /**
@@ -28,103 +31,23 @@ public class ManutencaoCorrida extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jtfData = new javax.swing.JTextField();
-        btnAdicionar = new javax.swing.JButton();
-        btnAlterar = new javax.swing.JButton();
-        btnExcluir = new javax.swing.JButton();
-        bntCancelar = new javax.swing.JButton();
-        jLabel4 = new javax.swing.JLabel();
-        jcbCircuito = new javax.swing.JComboBox<>();
+        jTabbedPane1 = new javax.swing.JTabbedPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Manutenção de Corrida");
-        jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-
-        jLabel2.setText("Data:");
-
-        btnAdicionar.setText("Adicionar");
-
-        btnAlterar.setText("Alterar");
-
-        btnExcluir.setText("Excluir");
-
-        bntCancelar.setText("Cancelar");
-
-        jLabel4.setText("Circuito:");
-
-        jcbCircuito.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Interlagos", "Silverstone", "Suzuka" }));
-        jcbCircuito.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jcbCircuitoActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(btnAdicionar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnAlterar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnExcluir)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(bntCancelar))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(41, 41, 41)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel4))
-                .addGap(110, 110, 110)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jcbCircuito, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addContainerGap())
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jtfData)
-                        .addGap(9, 9, 9))))
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 451, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
-                .addGap(24, 24, 24)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jtfData, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(jcbCircuito, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(52, 52, 52)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnAdicionar)
-                    .addComponent(btnAlterar)
-                    .addComponent(btnExcluir)
-                    .addComponent(bntCancelar))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 453, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jcbCircuitoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbCircuitoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jcbCircuitoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -176,14 +99,6 @@ public class ManutencaoCorrida extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton bntCancelar;
-    private javax.swing.JButton btnAdicionar;
-    private javax.swing.JButton btnAlterar;
-    private javax.swing.JButton btnExcluir;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JComboBox<String> jcbCircuito;
-    private javax.swing.JTextField jtfData;
+    private javax.swing.JTabbedPane jTabbedPane1;
     // End of variables declaration//GEN-END:variables
 }
