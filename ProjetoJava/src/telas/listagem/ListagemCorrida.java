@@ -5,6 +5,8 @@
  */
 package telas.listagem;
 
+import telas.manutencao.ManutencaoCorrida;
+
 /**
  *
  * @author Administrador
@@ -88,6 +90,8 @@ public class ListagemCorrida extends javax.swing.JDialog {
 
     private void btnNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoActionPerformed
         // TODO add your handling code here:
+        ManutencaoCorrida manutencao = new ManutencaoCorrida(null, true);
+        manutencao.setVisible(true);
     }//GEN-LAST:event_btnNovoActionPerformed
 
     /**
