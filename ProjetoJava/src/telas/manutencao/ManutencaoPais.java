@@ -5,6 +5,9 @@
  */
 package telas.manutencao;
 
+import static dao.PaisDao.inserir;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Administrador
@@ -50,6 +53,11 @@ public class ManutencaoPais extends javax.swing.JDialog {
         jLabel3.setText("Nome:");
 
         btnAdicionar.setText("Adicionar");
+        btnAdicionar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAdicionarActionPerformed(evt);
+            }
+        });
 
         btnAlterar.setText("Alterar");
 
@@ -108,6 +116,15 @@ public class ManutencaoPais extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarActionPerformed
+        boolean resultado = inserir(jtfSigla.getText(), jtfNome.getText());
+        if (resultado){
+            JOptionPane.showMessageDialog(null, "Inserido com sucesso!");
+        }else{
+            JOptionPane.showMessageDialog(null, "Erro!");
+        }
+    }//GEN-LAST:event_btnAdicionarActionPerformed
 
     /**
      * @param args the command line arguments
