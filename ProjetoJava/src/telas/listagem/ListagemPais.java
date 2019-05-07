@@ -5,6 +5,9 @@
  */
 package telas.listagem;
 
+import dao.PaisDao;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
 import telas.manutencao.ManutencaoPais;
 
 
@@ -20,6 +23,8 @@ public class ListagemPais extends javax.swing.JDialog {
     public ListagemPais(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        
+        atualizarTabela();
     }
 
     /**
@@ -32,13 +37,13 @@ public class ListagemPais extends javax.swing.JDialog {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tabela = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         btnNovo = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tabela.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null},
                 {null, null},
@@ -49,7 +54,7 @@ public class ListagemPais extends javax.swing.JDialog {
                 "Sigla", "Nome"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tabela);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -95,6 +100,17 @@ public class ListagemPais extends javax.swing.JDialog {
         manutencao.setVisible(true);
     }//GEN-LAST:event_btnNovoActionPerformed
 
+    public void atualizarTabela(){
+        DefaultTableModel modelo = new DefaultTableModel(); 
+        modelo.addColumn("Sigla");
+        modelo.addColumn("Nome");
+        List<String[]> resultados = PaisDao.consultar();
+        for(String[] linha: resultados){
+            modelo.addRow(linha);
+        }
+        tabela.setModel(modelo);
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -141,6 +157,6 @@ public class ListagemPais extends javax.swing.JDialog {
     private javax.swing.JButton btnNovo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tabela;
     // End of variables declaration//GEN-END:variables
 }
