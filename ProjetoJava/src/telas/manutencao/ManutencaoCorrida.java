@@ -17,9 +17,7 @@ public class ManutencaoCorrida extends javax.swing.JDialog {
     public ManutencaoCorrida(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        
-        jTabbedPane1.add("Corrida", new PanelCorrida());
-        jTabbedPane1.add("Pilotos da Corrida", new PanelCorridaPiloto());
+
     }
 
     /**
@@ -34,6 +32,9 @@ public class ManutencaoCorrida extends javax.swing.JDialog {
         jTabbedPane1 = new javax.swing.JTabbedPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+
+        jTabbedPane1.add("Corrida", new PanelCorrida());
+        jTabbedPane1.add("Pilotos da Corrida", new PanelCorridaPiloto());
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
