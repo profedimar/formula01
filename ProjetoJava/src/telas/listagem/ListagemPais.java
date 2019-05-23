@@ -10,7 +10,6 @@ import java.util.List;
 import javax.swing.table.DefaultTableModel;
 import telas.manutencao.ManutencaoPais;
 
-
 /**
  *
  * @author Administrador
@@ -23,7 +22,7 @@ public class ListagemPais extends javax.swing.JDialog {
     public ListagemPais(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        
+
         atualizarTabela();
     }
 
@@ -54,6 +53,14 @@ public class ListagemPais extends javax.swing.JDialog {
                 "Sigla", "Nome"
             }
         ));
+        tabela.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tabelaMouseClicked(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                tabelaMousePressed(evt);
+            }
+        });
         jScrollPane1.setViewportView(tabela);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -96,21 +103,38 @@ public class ListagemPais extends javax.swing.JDialog {
 
     private void btnNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoActionPerformed
         // TODO add your handling code here:
-        ManutencaoPais manutencao = new ManutencaoPais(null, true);
+        ManutencaoPais manutencao = new ManutencaoPais(null, true, this);
         manutencao.setVisible(true);
     }//GEN-LAST:event_btnNovoActionPerformed
 
-    public void atualizarTabela(){
-        DefaultTableModel modelo = new DefaultTableModel(); 
+    private void tabelaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaMouseClicked
+        
+    }//GEN-LAST:event_tabelaMouseClicked
+
+    private void tabelaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaMousePressed
+        //se deu dois cliques
+        if (evt.getClickCount() == 2) {
+            //obtem a linha selecionada
+            int linhaSelecionada = tabela.getSelectedRow();
+
+            //obtem a chave primária
+            String pk = tabela.getValueAt(linhaSelecionada, 0).toString(); //pk está na coluna 0
+            ManutencaoPais manutencao = new ManutencaoPais(null, true, this, pk);
+            manutencao.setVisible(true);
+        }
+    }//GEN-LAST:event_tabelaMousePressed
+
+    public void atualizarTabela() {
+        DefaultTableModel modelo = new DefaultTableModel();
         modelo.addColumn("Sigla");
         modelo.addColumn("Nome");
         List<String[]> resultados = PaisDao.consultar();
-        for(String[] linha: resultados){
+        for (String[] linha : resultados) {
             modelo.addRow(linha);
         }
         tabela.setModel(modelo);
     }
-    
+
     /**
      * @param args the command line arguments
      */

@@ -5,8 +5,11 @@
  */
 package telas.manutencao;
 
+import dao.PaisDao;
 import static dao.PaisDao.inserir;
+import java.util.Map;
 import javax.swing.JOptionPane;
+import telas.listagem.ListagemPais;
 
 /**
  *
@@ -14,12 +17,39 @@ import javax.swing.JOptionPane;
  */
 public class ManutencaoPais extends javax.swing.JDialog {
 
+    private ListagemPais listagem;
+
     /**
      * Creates new form ManutencaoPais
      */
     public ManutencaoPais(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+    }
+
+    public ManutencaoPais(java.awt.Frame parent, boolean modal, ListagemPais listagem) {
+        super(parent, modal);
+        initComponents();
+
+        this.listagem = listagem;
+    }
+    
+    public ManutencaoPais(java.awt.Frame parent, boolean modal, ListagemPais listagem, String pk) {
+        super(parent, modal);
+        initComponents();
+
+        this.listagem = listagem;
+        atualizaCampos(pk);
+    }
+    
+    private void atualizaCampos(String pk){
+        
+        Map<String, String> resultado = PaisDao.consultar(pk);
+        jtfSigla.setText(resultado.get("sigla"));
+        jtfNome.setText(resultado.get("nome"));
+        
+        jtfSigla.setEnabled(false);
+        btnAdicionar.setEnabled(false);
     }
 
     /**
@@ -39,9 +69,14 @@ public class ManutencaoPais extends javax.swing.JDialog {
         btnAdicionar = new javax.swing.JButton();
         btnAlterar = new javax.swing.JButton();
         btnExcluir = new javax.swing.JButton();
-        bntCancelar = new javax.swing.JButton();
+        bntLimpar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -63,7 +98,7 @@ public class ManutencaoPais extends javax.swing.JDialog {
 
         btnExcluir.setText("Excluir");
 
-        bntCancelar.setText("Cancelar");
+        bntLimpar.setText("Limpar");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -90,7 +125,7 @@ public class ManutencaoPais extends javax.swing.JDialog {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnExcluir)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(bntCancelar))))
+                        .addComponent(bntLimpar))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -110,7 +145,7 @@ public class ManutencaoPais extends javax.swing.JDialog {
                     .addComponent(btnAdicionar)
                     .addComponent(btnAlterar)
                     .addComponent(btnExcluir)
-                    .addComponent(bntCancelar))
+                    .addComponent(bntLimpar))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -119,13 +154,28 @@ public class ManutencaoPais extends javax.swing.JDialog {
 
     private void btnAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarActionPerformed
         boolean resultado = inserir(jtfSigla.getText(), jtfNome.getText());
-        if (resultado){
+        if (resultado) {
             JOptionPane.showMessageDialog(null, "Inserido com sucesso!");
-        }else{
+
+            if (listagem != null) {
+                listagem.atualizarTabela();
+            }
+            limparCampos();
+        } else {
             JOptionPane.showMessageDialog(null, "Erro!");
         }
     }//GEN-LAST:event_btnAdicionarActionPerformed
 
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_formWindowClosed
+
+    private void limparCampos(){
+        jtfSigla.setText("");
+        jtfNome.setText("");
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -169,7 +219,7 @@ public class ManutencaoPais extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton bntCancelar;
+    private javax.swing.JButton bntLimpar;
     private javax.swing.JButton btnAdicionar;
     private javax.swing.JButton btnAlterar;
     private javax.swing.JButton btnExcluir;

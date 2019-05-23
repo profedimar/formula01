@@ -9,7 +9,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -48,6 +50,25 @@ public class PaisDao {
                 resultados.add(linha);
             }
             return resultados;
+        } catch (SQLException | ClassNotFoundException ex) {
+            Logger.getLogger(PaisDao.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+    }
+    
+    public static Map<String, String> consultar(String pk) {
+        Map<String, String> resultado = new HashMap<>();
+        String sql = "SELECT sigla, nome FROM pais WHERE sigla=?";
+        PreparedStatement ps;
+        try {
+            ps = conexao.Conexao.getConexao().prepareStatement(sql);
+            ps.setString(1, pk);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                resultado.put("sigla", rs.getString("sigla"));
+                resultado.put("nome", rs.getString("nome"));
+            }
+            return resultado;
         } catch (SQLException | ClassNotFoundException ex) {
             Logger.getLogger(PaisDao.class.getName()).log(Level.SEVERE, null, ex);
             return null;
