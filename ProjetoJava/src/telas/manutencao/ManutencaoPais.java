@@ -6,7 +6,6 @@
 package telas.manutencao;
 
 import dao.PaisDao;
-import static dao.PaisDao.inserir;
 import java.util.Map;
 import javax.swing.JOptionPane;
 import telas.listagem.ListagemPais;
@@ -32,6 +31,10 @@ public class ManutencaoPais extends javax.swing.JDialog {
         initComponents();
 
         this.listagem = listagem;
+        
+        btnAlterar.setEnabled(false);
+        btnExcluir.setEnabled(false);
+        
     }
     
     public ManutencaoPais(java.awt.Frame parent, boolean modal, ListagemPais listagem, String pk) {
@@ -69,7 +72,7 @@ public class ManutencaoPais extends javax.swing.JDialog {
         btnAdicionar = new javax.swing.JButton();
         btnAlterar = new javax.swing.JButton();
         btnExcluir = new javax.swing.JButton();
-        bntLimpar = new javax.swing.JButton();
+        bntFechar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -95,10 +98,25 @@ public class ManutencaoPais extends javax.swing.JDialog {
         });
 
         btnAlterar.setText("Alterar");
+        btnAlterar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAlterarActionPerformed(evt);
+            }
+        });
 
         btnExcluir.setText("Excluir");
+        btnExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExcluirActionPerformed(evt);
+            }
+        });
 
-        bntLimpar.setText("Limpar");
+        bntFechar.setText("Fechar");
+        bntFechar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bntFecharActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -125,7 +143,7 @@ public class ManutencaoPais extends javax.swing.JDialog {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnExcluir)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(bntLimpar))))
+                        .addComponent(bntFechar))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -145,7 +163,7 @@ public class ManutencaoPais extends javax.swing.JDialog {
                     .addComponent(btnAdicionar)
                     .addComponent(btnAlterar)
                     .addComponent(btnExcluir)
-                    .addComponent(bntLimpar))
+                    .addComponent(bntFechar))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -153,7 +171,7 @@ public class ManutencaoPais extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarActionPerformed
-        boolean resultado = inserir(jtfSigla.getText(), jtfNome.getText());
+        boolean resultado = PaisDao.inserir(jtfSigla.getText(), jtfNome.getText());
         if (resultado) {
             JOptionPane.showMessageDialog(null, "Inserido com sucesso!");
 
@@ -170,6 +188,41 @@ public class ManutencaoPais extends javax.swing.JDialog {
         // TODO add your handling code here:
 
     }//GEN-LAST:event_formWindowClosed
+
+    private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
+        // TODO add your handling code here:
+        boolean resultado = PaisDao.alterar(jtfSigla.getText(), jtfNome.getText());
+        if (resultado) {
+            JOptionPane.showMessageDialog(null, "Alterado com sucesso!");
+
+            if (listagem != null) {
+                listagem.atualizarTabela();
+            }
+            dispose();
+        } else {
+            JOptionPane.showMessageDialog(null, "Erro!");
+        }
+    }//GEN-LAST:event_btnAlterarActionPerformed
+
+    private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
+        // TODO add your handling code here:
+        boolean resultado = PaisDao.excluir(jtfSigla.getText());
+        if (resultado) {
+            JOptionPane.showMessageDialog(null, "Excluído com sucesso!");
+
+            if (listagem != null) {
+                listagem.atualizarTabela();
+            }
+            dispose();
+        } else {
+            JOptionPane.showMessageDialog(null, "Erro!");
+        }
+    }//GEN-LAST:event_btnExcluirActionPerformed
+
+    private void bntFecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntFecharActionPerformed
+        // TODO add your handling code here:
+        dispose();
+    }//GEN-LAST:event_bntFecharActionPerformed
 
     private void limparCampos(){
         jtfSigla.setText("");
@@ -219,7 +272,7 @@ public class ManutencaoPais extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton bntLimpar;
+    private javax.swing.JButton bntFechar;
     private javax.swing.JButton btnAdicionar;
     private javax.swing.JButton btnAlterar;
     private javax.swing.JButton btnExcluir;

@@ -50,7 +50,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="btnExcluir" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="bntLimpar" min="-2" max="-2" attributes="0"/>
+                      <Component id="bntFechar" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
           </Group>
@@ -76,7 +76,7 @@
                   <Component id="btnAdicionar" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btnAlterar" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btnExcluir" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="bntLimpar" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="bntFechar" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
@@ -120,16 +120,25 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Alterar"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAlterarActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnExcluir">
       <Properties>
         <Property name="text" type="java.lang.String" value="Excluir"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnExcluirActionPerformed"/>
+      </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="bntLimpar">
+    <Component class="javax.swing.JButton" name="bntFechar">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Limpar"/>
+        <Property name="text" type="java.lang.String" value="Fechar"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bntFecharActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

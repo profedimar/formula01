@@ -35,7 +35,34 @@ public class PaisDao {
             return false;
         }
     }
+    
+    public static boolean alterar(String sigla, String nome) {
+        String sql = "UPDATE pais SET nome = ? WHERE sigla = ?";
+        try {
+            PreparedStatement ps = conexao.Conexao.getConexao().prepareStatement(sql);
+            ps.setString(1, nome);
+            ps.setString(2, sigla);
+            ps.executeUpdate();
+            return true;
+        } catch (SQLException | ClassNotFoundException ex) {
+            System.out.println(ex.getMessage());
+            return false;
+        }
+    }
 
+      public static boolean excluir(String sigla) {
+        String sql = "DELETE FROM pais WHERE sigla = ?";
+        try {
+            PreparedStatement ps = conexao.Conexao.getConexao().prepareStatement(sql);
+            ps.setString(1, sigla);
+            ps.executeUpdate();
+            return true;
+        } catch (SQLException | ClassNotFoundException ex) {
+            System.out.println(ex.getMessage());
+            return false;
+        }
+    }
+    
     public static List<String[]> consultar() {
         List<String[]> resultados = new ArrayList<>();
         String sql = "SELECT sigla, nome FROM pais";
