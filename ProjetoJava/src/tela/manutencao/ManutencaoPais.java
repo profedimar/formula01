@@ -171,22 +171,12 @@ public class ManutencaoPais extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarActionPerformed
-        boolean resultado = PaisDao.inserir(jtfSigla.getText(), jtfNome.getText());
-        if (resultado) {
-            JOptionPane.showMessageDialog(null, "Inserido com sucesso!");
-
-            if (listagem != null) {
-                listagem.atualizarTabela();
-            }
-            limparCampos();
-        } else {
-            JOptionPane.showMessageDialog(null, "Erro!");
-        }
+        controlador.ControladorPais.inserir(this);
     }//GEN-LAST:event_btnAdicionarActionPerformed
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
         // TODO add your handling code here:
-
+       
     }//GEN-LAST:event_formWindowClosed
 
     private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
@@ -279,7 +269,7 @@ public class ManutencaoPais extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JTextField jtfNome;
-    private javax.swing.JTextField jtfSigla;
+    public javax.swing.JTextField jtfNome;
+    public javax.swing.JTextField jtfSigla;
     // End of variables declaration//GEN-END:variables
 }

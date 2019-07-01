@@ -5,6 +5,9 @@
  */
 package controlador;
 
+import dao.PaisDao;
+import javax.swing.JOptionPane;
+import modelo.Pais;
 import tela.manutencao.ManutencaoPais;
 
 /**
@@ -13,8 +16,19 @@ import tela.manutencao.ManutencaoPais;
  */
 public class ControladorPais {
     
+    //vai ter que deixar os campos public na manutenção e a listagem tb
+    
     public static void inserir(ManutencaoPais man){
+        Pais objeto = new Pais();
+        objeto.setSigla(man.jtfSigla.getText());
+        objeto.setNome(man.jtfNome.getText());
         
+        boolean resultado = PaisDao.inserir(objeto);
+        if (resultado) {
+            JOptionPane.showMessageDialog(null, "Inserido com sucesso!");
+        } else {
+            JOptionPane.showMessageDialog(null, "Erro!");
+        }
     }
     
 }
