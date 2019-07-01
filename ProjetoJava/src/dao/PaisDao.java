@@ -15,6 +15,7 @@ import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import modelo.Pais;
 
 /**
  *
@@ -22,12 +23,12 @@ import javax.swing.JOptionPane;
  */
 public class PaisDao {
 
-    public static boolean inserir(String sigla, String nome) {
+    public static boolean inserir(Pais objeto) {
         String sql = "INSERT INTO pais (sigla, nome) VALUES (?, ?)";
         try {
             PreparedStatement ps = conexao.Conexao.getConexao().prepareStatement(sql);
-            ps.setString(1, sigla);
-            ps.setString(2, nome);
+            ps.setString(1, objeto.getSigla());
+            ps.setString(2, objeto.getNome());
             ps.executeUpdate();
             return true;
         } catch (SQLException | ClassNotFoundException ex) {
@@ -103,7 +104,11 @@ public class PaisDao {
     }
 
     public static void main(String[] args) {
-        boolean resultado = inserir("BR", "Brasil");
+        Pais objeto = new Pais();
+        objeto.setSigla("BR");
+        objeto.setNome("Brasil");
+        
+        boolean resultado = inserir(objeto);
         if (resultado) {
             JOptionPane.showMessageDialog(null, "Inserido com sucesso!");
         } else {
