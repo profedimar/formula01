@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package telas.listagem;
+package tela.listagem;
 
 import dao.PaisDao;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
-import telas.manutencao.ManutencaoPais;
+import tela.manutencao.ManutencaoPais;
 
 /**
  *

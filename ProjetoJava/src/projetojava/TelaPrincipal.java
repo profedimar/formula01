@@ -5,11 +5,11 @@
  */
 package projetojava;
 
-import telas.listagem.ListagemCircuito;
-import telas.listagem.ListagemCorrida;
-import telas.listagem.ListagemEquipe;
-import telas.listagem.ListagemPais;
-import telas.listagem.ListagemPiloto;
+import tela.listagem.ListagemCircuito;
+import tela.listagem.ListagemCorrida;
+import tela.listagem.ListagemEquipe;
+import tela.listagem.ListagemPais;
+import tela.listagem.ListagemPiloto;
 
 /**
  *

@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package telas.manutencao;
+package tela.manutencao;
 
 import dao.PaisDao;
 import java.util.Map;
 import javax.swing.JOptionPane;
-import telas.listagem.ListagemPais;
+import tela.listagem.ListagemPais;
 
 /**
  *
